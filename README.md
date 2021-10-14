@@ -1,4 +1,3 @@
-# Smart-Calculator
 <h1>Smart-Calculator is a sympy gui made in python</h1>
 <h2>Specifications:</h2>
  <ul>
