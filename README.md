@@ -7,6 +7,6 @@
  </ul>
 
   
-  ## How to Install
+  ## How to Install:
    </br>
   You just need python3 on your system and install requirements.txt and you should be up and running!
