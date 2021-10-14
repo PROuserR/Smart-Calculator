@@ -5,15 +5,15 @@ import tkinter as tk
 win = tk.Tk()
 win.title('Smart Calculator')
 
-frm_output =  tk.Frame()
+frm_output = tk.Frame()
 frm_nav_buttons = tk.Frame()
 frm_standard = tk.LabelFrame(text='Standard')
 frm_abc = tk.LabelFrame(text='Symbols')
-frm_main_functions = tk.Frame()
 
 frm_sci = tk.LabelFrame(text='Sci')
 frm_trig = tk.Frame(master=frm_sci)
 frm_inequality = tk.Frame(master=frm_sci)
+frm_expand_factor = tk.Frame(master=frm_sci)
 frm_other_sci = tk.Frame(master=frm_sci)
 frm_log = tk.Frame(master=frm_sci)
 
@@ -29,16 +29,16 @@ ent_summation_n = tk.Entry(master=frm_summation, width=2)
 
 deg_type_choice = tk.IntVar()
 
-btn_zero = tk.Button(master=frm_standard, text='0')
-btn_one = tk.Button(master=frm_standard, text='1')
-btn_two = tk.Button(master=frm_standard, text='2')
-btn_three = tk.Button(master=frm_standard, text='3')
-btn_four = tk.Button(master=frm_standard, text='4')
-btn_five = tk.Button(master=frm_standard, text='5')
-btn_six = tk.Button(master=frm_standard, text='6')
-btn_seven = tk.Button(master=frm_standard, text='7')
-btn_eight = tk.Button(master=frm_standard, text='8')
-btn_nine = tk.Button(master=frm_standard, text='9')
+btn_zero = tk.Button(master=frm_standard, text='0', bg='white')
+btn_one = tk.Button(master=frm_standard, text='1', bg='white')
+btn_two = tk.Button(master=frm_standard, text='2', bg='white')
+btn_three = tk.Button(master=frm_standard, text='3', bg='white')
+btn_four = tk.Button(master=frm_standard, text='4', bg='white')
+btn_five = tk.Button(master=frm_standard, text='5', bg='white')
+btn_six = tk.Button(master=frm_standard, text='6', bg='white')
+btn_seven = tk.Button(master=frm_standard, text='7', bg='white')
+btn_eight = tk.Button(master=frm_standard, text='8', bg='white')
+btn_nine = tk.Button(master=frm_standard, text='9', bg='white')
 
 btn_equal = tk.Button(master=frm_standard, text='=')
 btn_dot = tk.Button(master=frm_standard, text='.')
@@ -63,6 +63,9 @@ btn_tan = tk.Button(master=frm_trig, text='tan')
 btn_cot = tk.Button(master=frm_trig, text='cot')
 btn_degree = tk.Button(master=frm_trig, text='°')
 
+btn_expand = tk.Button(master=frm_expand_factor, text='Expand')
+btn_factor = tk.Button(master=frm_expand_factor, text='Factor')
+
 
 base_choice = tk.IntVar()
 btn_log = tk.Button(master=frm_log, text='log')
@@ -81,14 +84,11 @@ btn_greater_equal = tk.Button(master=frm_inequality, text='≥')
 btn_less = tk.Button(master=frm_inequality, text='<')
 btn_less_equal = tk.Button(master=frm_inequality, text='≤')
 
-btn_remove = tk.Button(master=frm_nav_buttons, text='⌫')
-btn_new_line = tk.Button(master=frm_nav_buttons, text='⤶')
-btn_functions = tk.Button(master=frm_nav_buttons, text='∑∫ഽ')
-btn_abc = tk.Button(master=frm_nav_buttons, text='abc')
-
-btn_submit = tk.Button(master=frm_main_functions, text='Submit')
-btn_expand = tk.Button(master=frm_main_functions, text='Expand')
-btn_factor = tk.Button(master=frm_main_functions, text='Factor')
+btn_submit = tk.Button(master=frm_nav_buttons, text='Submit', bg='#c2b9b6')
+btn_remove = tk.Button(master=frm_nav_buttons, text='⌫', bg='#c2b9b6')
+btn_new_line = tk.Button(master=frm_nav_buttons, text='⤶', bg='#c2b9b6')
+btn_functions = tk.Button(master=frm_nav_buttons, text='∑∫ഽ', bg='#c2b9b6')
+btn_abc = tk.Button(master=frm_nav_buttons, text='abc', bg='#c2b9b6')
 
 btn_limit = tk.Button(master=frm_limit, text='Limit:\n x-->')
 btn_insert_infinity = tk.Button(master=frm_limit, text='∞')
@@ -101,7 +101,7 @@ btn_a = tk.Button(master=frm_abc, text='a')
 btn_b = tk.Button(master=frm_abc, text='b')
 btn_c = tk.Button(master=frm_abc, text='c')
 btn_d = tk.Button(master=frm_abc, text='d')
-btn_letter_e = tk.Button(master=frm_abc, text='e')#To distinguish between e euler and letter e
+btn_letter_e = tk.Button(master=frm_abc, text='e')  # To distinguish between e euler and letter e
 btn_f = tk.Button(master=frm_abc, text='f')
 btn_g = tk.Button(master=frm_abc, text='g')
 btn_h = tk.Button(master=frm_abc, text='h')
@@ -124,7 +124,7 @@ btn_letter_x = tk.Button(master=frm_abc, text='x')
 btn_y = tk.Button(master=frm_abc, text='y')
 btn_z = tk.Button(master=frm_abc, text='z')
 
-#Layout
+# Layout
 lbl_expression.grid(row=0, column=0, sticky='new')
 txt_output.grid(row=1, column=0, sticky='new')
 
