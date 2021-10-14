@@ -1,2 +1,2 @@
 # Smart-Calculator
-Ain't no ordinary calculator!
+<h1>Ain't no ordinary calculator!<h1/>
