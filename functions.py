@@ -97,14 +97,12 @@ def factor():
 
 def remove():
     txt_output.config(state='normal')
-    global lines
-    lines = 1
-    txt_output.delete(f'1.{len(txt_output.get("1.0", tk.END)) - 2}', tk.END)
+    txt_output.delete('end-2c', tk.END)
     txt_output.config(state='disabled')
 
 
 def digit_index(expr:str, char):
-    #This function will find the index of the last digit after char ex: √
+    # This function will find the index of the last digit after char ex: √
 	start_index = expr.index(char) + 1
 	index = 0
 	while True:
@@ -166,6 +164,8 @@ def has_symbol(expr):
 def add_star(expr):
     for i in range(len(expr)):
         if expr[i].isdigit() and expr[i + 1].isalpha()  and expr[i+1] != '°' or expr[i] == ')' and expr[i+1] == '(' and expr[i+1] != '°':
+            expr = expr[:i+1] + '*' + expr[i+1:]
+        if expr[i].isalpha() and expr[i + 1].isalpha()  and expr[i+1] != '°' or expr[i] == ')' and expr[i+1] == '(' and expr[i+1] != '°':
             expr = expr[:i+1] + '*' + expr[i+1:]
     return expr
 
