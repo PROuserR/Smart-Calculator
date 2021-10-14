@@ -1,7 +1,7 @@
 import tkinter as tk
 
 
-#Define Widgets
+# Define Widgets
 win = tk.Tk()
 win.title('Smart Calculator')
 
@@ -13,11 +13,14 @@ frm_main_functions = tk.Frame()
 
 frm_sci = tk.LabelFrame(text='Sci')
 frm_trig = tk.Frame(master=frm_sci)
-frm_log = tk.Frame(master=frm_sci)
+frm_inequality = tk.Frame(master=frm_sci)
 frm_other_sci = tk.Frame(master=frm_sci)
+frm_log = tk.Frame(master=frm_sci)
+
 frm_limit = tk.Frame(master=frm_sci)
 frm_summation = tk.Frame(master=frm_sci)
 
+lbl_expression = tk.Label(master=frm_output, text='Expression goes here:')
 txt_output = tk.Text(master=frm_output, width=35, height=8, state='disabled')
 ent_base = tk.Entry(master=frm_log, width=2)
 ent_limit_value = tk.Entry(master=frm_limit, width=2)
@@ -25,7 +28,6 @@ ent_summation_start = tk.Entry(master=frm_summation, width=2)
 ent_summation_n = tk.Entry(master=frm_summation, width=2)
 
 deg_type_choice = tk.IntVar()
-
 
 btn_zero = tk.Button(master=frm_standard, text='0')
 btn_one = tk.Button(master=frm_standard, text='1')
@@ -74,10 +76,10 @@ btn_imag = tk.Button(master=frm_other_sci, text='i')
 btn_derivative = tk.Button(master=frm_other_sci, text='ⅆ')
 btn_integral = tk.Button(master=frm_other_sci, text='⎰')
 
-btn_greater = tk.Button(master=frm_other_sci, text='>')
-btn_greater_equal = tk.Button(master=frm_other_sci, text='≥')
-btn_less = tk.Button(master=frm_other_sci, text='<')
-btn_less_equal = tk.Button(master=frm_other_sci, text='≤')
+btn_greater = tk.Button(master=frm_inequality, text='>')
+btn_greater_equal = tk.Button(master=frm_inequality, text='≥')
+btn_less = tk.Button(master=frm_inequality, text='<')
+btn_less_equal = tk.Button(master=frm_inequality, text='≤')
 
 btn_remove = tk.Button(master=frm_nav_buttons, text='⌫')
 btn_new_line = tk.Button(master=frm_nav_buttons, text='⤶')
@@ -123,7 +125,8 @@ btn_y = tk.Button(master=frm_abc, text='y')
 btn_z = tk.Button(master=frm_abc, text='z')
 
 #Layout
-txt_output.grid(row=0, column=0, sticky='new')
+lbl_expression.grid(row=0, column=0, sticky='new')
+txt_output.grid(row=1, column=0, sticky='new')
 
 btn_pi.grid(row=4, column=0)
 btn_x.grid(row=4, column=1)

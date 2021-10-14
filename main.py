@@ -1,7 +1,7 @@
 from functions import *
 
 
-#Commands
+# Commands
 btn_zero.configure(command=lambda: insert_letter(btn_zero['text']))
 btn_one.configure(command=lambda: insert_letter(btn_one['text']))
 btn_two.configure(command=lambda: insert_letter(btn_two['text']))
@@ -89,7 +89,6 @@ btn_w.configure(command=lambda: insert_letter(btn_w['text']))
 btn_letter_x.configure(command=lambda: insert_letter(btn_letter_x['text']))
 btn_y.configure(command=lambda: insert_letter(btn_y['text']))
 btn_z.configure(command=lambda: insert_letter(btn_z['text']))
-#------------------------------------------------------------
 
 place_abc_btns()
 
@@ -100,6 +99,7 @@ frm_standard.pack()
 
 frm_trig.pack()
 frm_other_sci.pack()
+frm_inequality.pack()
 frm_log.pack()
 frm_limit.pack()
 frm_summation.pack()

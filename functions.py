@@ -1,4 +1,3 @@
-import math
 import sympy
 from widgets import *
 
@@ -17,7 +16,7 @@ def submit():
     elif '<' in exprs or '>' in exprs or '≥' in exprs or '≤' in exprs:
         solve_inequality()
     else:
-        if sympy.sympify(process_txt()[0]).is_Number:
+        if sympy.sympify(process_txt()[0]).is_Number or '°' in exprs:
             calculate()
         else:
             plot()
@@ -206,14 +205,12 @@ def process_txt():
         elif '≤' in str(expr):
             expr = process_inequality(expr, '≤')
 
-
         try:    
             i_index = expr.index('i')
             if expr[i_index - 1].isdigit():
                 expr = expr.replace('i', 'j')
         except:
             pass
-            
 
         exprs.append(expr)
     return exprs   
@@ -272,6 +269,12 @@ def insert_summation():
 def insert_letter(letter):
     txt_output.config(state='normal')
     txt_output.insert(f'{lines}.{len(txt_output.get(str(lines) + ".0", tk.END))}', letter)
+    txt_output.config(state='disabled')
+
+
+def clear_txt(event):
+    txt_output.config(state='normal')
+    txt_output.delete('1.0', tk.END)
     txt_output.config(state='disabled')
 
 
