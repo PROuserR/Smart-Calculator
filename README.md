@@ -3,6 +3,7 @@
  <ul>
    <li>Runs on Windows, Mac, Linux</li>
    <li>Uses tkinter for UI</li>
+   <li>Uses sympy which is a python package</li>
    <li>Acts basically as a normal calculator and make use of sympy features like plotting and calculating integrals and derivatives..</li>
  </ul>
 
