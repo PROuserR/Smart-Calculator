@@ -13,19 +13,17 @@ frm_abc = tk.LabelFrame(text='Symbols')
 frm_sci = tk.LabelFrame(text='Sci')
 frm_trig = tk.Frame(master=frm_sci)
 frm_inequality = tk.Frame(master=frm_sci)
+frm_calculus = tk.Frame(master=frm_sci)
 frm_expand_factor = tk.Frame(master=frm_sci)
 frm_other_sci = tk.Frame(master=frm_sci)
 frm_log = tk.Frame(master=frm_sci)
 
-frm_limit = tk.Frame(master=frm_sci)
-frm_summation = tk.Frame(master=frm_sci)
-
 lbl_expression = tk.Label(master=frm_output, text='Expression goes here:')
 txt_output = tk.Text(master=frm_output, width=35, height=8, state='disabled')
 ent_base = tk.Entry(master=frm_log, width=2)
-ent_limit_value = tk.Entry(master=frm_limit, width=2)
-ent_summation_start = tk.Entry(master=frm_summation, width=2)
-ent_summation_n = tk.Entry(master=frm_summation, width=2)
+ent_limit_value = tk.Entry(master=frm_calculus, width=2)
+ent_summation_start = tk.Entry(master=frm_other_sci, width=2)
+ent_summation_n = tk.Entry(master=frm_other_sci, width=2)
 
 deg_type_choice = tk.IntVar()
 
@@ -57,28 +55,29 @@ btn_x = tk.Button(master=frm_standard, text='x')
 btn_pi = tk.Button(master=frm_standard, text='Ⲡ')
 
 
+lbl_trigonometry = tk.Label(master=frm_sci, text='Trigonometry:')
 btn_sin = tk.Button(master=frm_trig, text='sin')
 btn_cos = tk.Button(master=frm_trig, text='cos')
 btn_tan = tk.Button(master=frm_trig, text='tan')
 btn_cot = tk.Button(master=frm_trig, text='cot')
 btn_degree = tk.Button(master=frm_trig, text='°')
 
-btn_expand = tk.Button(master=frm_expand_factor, text='Expand')
-btn_factor = tk.Button(master=frm_expand_factor, text='Factor')
+btn_expand = tk.Button(master=frm_expand_factor, text='Expand', bg='red')
+btn_factor = tk.Button(master=frm_expand_factor, text='Factor', bg='yellow')
 
-
+lbl_log = tk.Label(master=frm_sci, text='Log:')
 base_choice = tk.IntVar()
 btn_log = tk.Button(master=frm_log, text='log')
 lbl_base = tk.Label(master=frm_log, text='Base:')
+btn_e = tk.Button(master=frm_log, text='e')
 
-
-btn_e = tk.Button(master=frm_other_sci, text='e')
+lbl_other = tk.Label(master=frm_sci, text='Other:')
 btn_factorial = tk.Button(master=frm_other_sci, text='!')
 btn_abs = tk.Button(master=frm_other_sci, text='| |')
 btn_imag = tk.Button(master=frm_other_sci, text='i')
-btn_derivative = tk.Button(master=frm_other_sci, text='ⅆ')
-btn_integral = tk.Button(master=frm_other_sci, text='⎰')
+btn_summation = tk.Button(master=frm_other_sci, text='∑')
 
+lbl_inequality = tk.Label(master=frm_sci, text='Inequality:')
 btn_greater = tk.Button(master=frm_inequality, text='>')
 btn_greater_equal = tk.Button(master=frm_inequality, text='≥')
 btn_less = tk.Button(master=frm_inequality, text='<')
@@ -90,11 +89,11 @@ btn_new_line = tk.Button(master=frm_nav_buttons, text='⤶', bg='#c2b9b6')
 btn_functions = tk.Button(master=frm_nav_buttons, text='∑∫ഽ', bg='#c2b9b6')
 btn_abc = tk.Button(master=frm_nav_buttons, text='abc', bg='#c2b9b6')
 
-btn_limit = tk.Button(master=frm_limit, text='Limit:\n x-->')
-btn_insert_infinity = tk.Button(master=frm_limit, text='∞')
-
-
-btn_summation = tk.Button(master=frm_summation, text='∑')
+lbl_calculus = tk.Label(master=frm_sci, text='Calculus:')
+btn_limit = tk.Button(master=frm_calculus ,text='Limit:\n x-->')
+btn_insert_infinity = tk.Button(master=frm_calculus, text='∞')
+btn_derivative = tk.Button(master=frm_calculus, text='ⅆ')
+btn_integral = tk.Button(master=frm_calculus, text='⎰')
 
 
 btn_a = tk.Button(master=frm_abc, text='a')
@@ -168,33 +167,34 @@ btn_submit.grid(row=0, column=0)
 btn_expand.grid(row=0, column=2)
 btn_factor.grid(row=0, column=3)
 
-btn_sin.grid(row=0, column=0)
-btn_cos.grid(row=0, column=1)
-btn_tan.grid(row=0, column=2)
-btn_cot.grid(row=0, column=3)
-btn_degree.grid(row=0, column=4)
-
-
-btn_log.grid(row=1, column=0)
-lbl_base.grid(row=1, column=1)
-ent_base.grid(row=1, column=2)
-
-btn_abs.grid(row=2, column=0)
-btn_imag.grid(row=2, column=1)
-btn_e.grid(row=2, column=2)
-btn_factorial.grid(row=2, column=3)
-btn_derivative.grid(row=2, column=4)
-btn_integral.grid(row=2, column=5)
+btn_sin.grid(row=1, column=0)
+btn_cos.grid(row=1, column=1)
+btn_tan.grid(row=1, column=2)
+btn_cot.grid(row=1, column=3)
+btn_degree.grid(row=1, column=4)
 
 btn_greater.grid(row=3, column=0)
 btn_greater_equal.grid(row=3, column=1)
 btn_less.grid(row=3, column=2)
 btn_less_equal.grid(row=3, column=3)
 
-btn_limit.grid(row=0, column=0)
-ent_limit_value.grid(row=0, column=1)
-btn_insert_infinity.grid(row=0, column=2)
 
+btn_log.grid(row=0, column=0)
+lbl_base.grid(row=0, column=1)
+ent_base.grid(row=0, column=2)
+btn_e.grid(row=0, column=3)
+
+btn_abs.grid(row=1, column=1)
+btn_imag.grid(row=1, column=2)
+btn_factorial.grid(row=1, column=3)
 ent_summation_n.grid(row=0, column=0)
 btn_summation.grid(row=1, column=0)
 ent_summation_start.grid(row=2, column=0)
+
+btn_limit.grid(row=0, column=0)
+ent_limit_value.grid(row=0, column=1)
+btn_insert_infinity.grid(row=0, column=2)
+btn_derivative.grid(row=0, column=3)
+btn_integral.grid(row=0, column=4)
+
+
