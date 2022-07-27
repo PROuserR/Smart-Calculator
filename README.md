@@ -1,3 +1,8 @@
+# ScreenShots
+https://user-images.githubusercontent.com/42172521/181351304-d717760c-ffc2-45c5-a2f1-a7aaf4c46321.PNG
+https://user-images.githubusercontent.com/42172521/181351308-848594d9-f6cd-487a-88f8-07a9815b54ee.PNG
+https://user-images.githubusercontent.com/42172521/181351314-5d6b339f-3f4f-462f-9368-c3f297dba2e6.PNG
+https://user-images.githubusercontent.com/42172521/181351318-bc02d3ff-9987-4590-9a54-dca2cbd3d5a7.PNG
 <h1>Smart-Calculator is a sympy gui made in python</h1>
 <h2>Specifications:</h2>
  <ul>
