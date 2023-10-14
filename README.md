@@ -1,2 +1,2 @@
 # Smart-Calculator
-Ain't no ordinary calculator!
+Advanced Calculator using Python and Sympy library
