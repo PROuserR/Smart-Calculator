@@ -27,7 +27,7 @@ pip install -r requirements.txt
 ```
 
 # Running
-To launch the website simply run the main.py script:
+To launch the website simply run the main.py script in src directory:
 
 ```sh
 python main.py
