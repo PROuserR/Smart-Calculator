@@ -3,7 +3,7 @@ from widgets import *
 
 
 lines = 1
-is_showed_abc = True
+is_showed_symbols = True
 is_showed_functions = True
 
 
@@ -101,8 +101,9 @@ def remove():
     txt_output.config(state='disabled')
 
 
+# This function will find the index of the last digit after char ex: √
 def digit_index(expr:str, char):
-    # This function will find the index of the last digit after char ex: √
+    
 	start_index = expr.index(char) + 1
 	index = 0
 	while True:
@@ -113,8 +114,8 @@ def digit_index(expr:str, char):
 		start_index += 1
 
 
+#This functions will remove all terms to the left side and change their signs with the equal sign removed
 def process_equation(equation):
-    #This functions will remove all terms to the left side and change their signs with the equal sign removed
 	equal_index = equation.index('=')
 
 	expr1 = sympy.sympify(equation[:equal_index])
@@ -272,46 +273,37 @@ def insert_letter(letter):
     txt_output.config(state='disabled')
 
 
-def clear_txt(event):
+def clear_txt():
     txt_output.config(state='normal')
     txt_output.delete('1.0', tk.END)
     txt_output.config(state='disabled')
 
 
-def place_abc_btns():
-    i, j = 0, 0
-    for btn in frm_abc.children:
-        frm_abc.children[btn].grid(row=j, column=i)
-        i += 1
-        if i % 10 == 0:
-            j += 1
-            i = 0
-
-
-def show_abc():
-    global is_showed_abc
-    if is_showed_abc:
-        frm_abc.pack()
+def show_symbols():
+    global is_showed_symbols
+    if is_showed_symbols:
+        frm_symbols.pack()
         frm_standard.pack_forget()
         frm_sci.pack_forget()
 
     else:
         frm_standard.pack()
-        frm_abc.pack_forget()
+        frm_symbols.pack_forget()
         frm_sci.pack_forget()
         
-    is_showed_abc = not is_showed_abc
+    is_showed_symbols = not is_showed_symbols
 
 
 def show_functions():
     global is_showed_functions
     if is_showed_functions:
         frm_standard.pack_forget()
-        frm_abc.pack_forget()
+        frm_symbols.pack_forget()
         frm_sci.pack()
 
     else:
         frm_standard.pack()
         frm_sci.pack_forget()
-        frm_abc.pack_forget()
+        frm_symbols.pack_forget()
     is_showed_functions = not is_showed_functions
+
