@@ -12,61 +12,21 @@ def submit():
     exprs = txt_output.get('1.0', tk.END)
 
     if '=' in exprs:
-        solve()
+        compute('solve_equality')
     elif '<' in exprs or '>' in exprs or '≥' in exprs or '≤' in exprs:
-        solve_inequality()
+        compute('solve_inequality')
     else:
-        if sympy.sympify(process_txt()[0]).is_Number or '°' in exprs:
-            calculate()
+        if sympy.sympify(process_input()[0]).is_Number or '°' in exprs:
+            compute('calculate_expression')
         else:
-            plot()
+            plot_expression()
     txt_output.config(state='disabled')
 
 
-def calculate():
-    txt_output.config(state='normal')
-    expr = process_txt()[0]
-    try:
-        txt_output.insert(tk.END, f'\n{round(float(sympy.sympify(expr)), 2)}')
-    except:
-        txt_output.insert(tk.END, f'\n{sympy.sympify(expr)}')
-    txt_output.config(state='disabled')
-
-
-def solve():
-    txt_output.config(state='normal')
-
-    exprs = process_txt()
-
-    if len(exprs) == 1:
-        solutions = sympy.solve(sympy.sympify(exprs[0]), dict=True)
-    if len(exprs) == 2:
-        solutions = sympy.solve((sympy.sympify(exprs[0]), sympy.sympify(exprs[1])), dict=True)
-
-    for solution in solutions:
-        txt_output.insert(tk.END, f'\n{solution}')
-
-    txt_output.config(state='disabled')
-
-
-def solve_inequality():
-    txt_output.config(state='normal')
-
-    expr = process_txt()[0]
-
-    symbol = [symbol for symbol in sympy.solve(expr[0], dict=True)[0].items()][0][0]
-    solution = [symbol for symbol in sympy.solve(expr[0], dict=True)[0].items()][0][1]
-
-    txt_output.insert(tk.END, f'\n{symbol}{expr[1]}{solution}')
-
-    txt_output.config(state='disabled')
-
-
-def plot():
+def plot_expression():
     txt_output.config(state='normal')
         
-    exprs = process_txt()
-
+    exprs = process_input()
 
     if lines == 1:
         sympy.plot(sympy.sympify(exprs[0]), title=str(exprs[0]), xlabel='x', ylabel='f(x)')
@@ -77,33 +37,8 @@ def plot():
     txt_output.config(state='disabled')
 
 
-def expand():
-    txt_output.config(state='normal')
-    expr = process_txt()[0]
-
-    expr = sympy.sympify(expr)
-    txt_output.insert(f'{lines}.{len(txt_output.get(str(lines) + ".0", tk.END))}', f'\n{expr.expand()}')
-    txt_output.config(state='disabled')
-
-
-def factor():
-    txt_output.config(state='normal')
-    expr = process_txt()[0]
-
-    expr = sympy.sympify(expr)
-    txt_output.insert(f'{lines}.{len(txt_output.get(str(lines) + ".0", tk.END))}', f'\n{expr.factor()}')
-    txt_output.config(state='disabled')
-
-
-def remove():
-    txt_output.config(state='normal')
-    txt_output.delete('end-2c', tk.END)
-    txt_output.config(state='disabled')
-
-
 # This function will find the index of the last digit after char ex: √
-def digit_index(expr:str, char):
-    
+def digit_index(expr, char): 
 	start_index = expr.index(char) + 1
 	index = 0
 	while True:
@@ -123,6 +58,7 @@ def process_equation(equation):
 	return expr1 - expr2
 
 
+#This functions will remove all terms to the left side and change their signs with the inequal sign removed
 def process_inequality(inequality, char):
     inequality_index = inequality.index(char)
     expr1 = sympy.sympify(inequality[:inequality_index])
@@ -171,7 +107,7 @@ def add_star(expr):
     return expr
 
 
-def process_txt():
+def process_input():
     exprs = []
     for i in range(1, lines + 1):
         expr = txt_output.get(f'{i}.0', f'{i+1}.0')
@@ -217,6 +153,57 @@ def process_txt():
     return exprs   
 
 
+def compute(operation):
+    txt_output.config(state='normal')
+    expr = process_input()[0]
+
+    if operation == 'calculate_expression':
+        result = f'{round(float(sympy.sympify(expr)), 2)}'
+    elif operation == 'solve_equality':
+        exprs = process_input()
+        solutions = None
+        if len(exprs) == 1:
+            solutions = sympy.solve(sympy.sympify(exprs[0]), dict=True)
+        elif len(exprs) == 2:
+            solutions = sympy.solve((sympy.sympify(exprs[0]), sympy.sympify(exprs[1])), dict=True)
+        
+        result = solutions
+    elif operation == 'solve_inequality':
+        symbol = [symbol for symbol in sympy.solve(expr[0], dict=True)[0].items()][0][0]
+        solution = [symbol for symbol in sympy.solve(expr[0], dict=True)[0].items()][0][1]
+        result = f'{symbol}{expr[1]}{solution}'
+    elif operation == 'factor_expression':
+        result = sympy.sympify(expr).factor()
+    elif operation == 'expand_expression':
+        result = sympy.sympify(expr).expand()
+    elif operation == 'absolute':
+        result = abs(int(sympy.sympify(expr)))    
+    elif operation == 'limit':
+        value = ent_limit_value.get()
+        value = value.replace('∞', str(sympy.S.Infinity))
+        limit = sympy.Limit(sympy.sympify(expr), sympy.Symbol('x'), sympy.sympify(value)).doit()
+        result = limit
+    elif operation == 'derivative':
+        derivative = sympy.Derivative(sympy.sympify(expr), sympy.Symbol('x')).doit()
+        result = derivative
+    elif operation == 'integral':
+        integral = sympy.Integral(sympy.sympify(expr), sympy.Symbol('x')).doit()
+        result = integral
+    elif operation == 'summation':
+        x = sympy.Symbol('x')
+        summation = sympy.summation(sympy.sympify(expr), (x, sympy.sympify(ent_summation_start.get()), sympy.sympify(ent_summation_n.get())))
+        result = summation
+
+    txt_output.insert(tk.END, f'\n{result}')
+    txt_output.config(state='disabled')
+ 
+
+def insert_letter(letter):
+    txt_output.config(state='normal')
+    txt_output.insert(f'{lines}.{len(txt_output.get(str(lines) + ".0", tk.END))}', letter)
+    txt_output.config(state='disabled')
+
+
 def insert_new_line():
     txt_output.config(state='normal')
     global lines
@@ -225,51 +212,9 @@ def insert_new_line():
     txt_output.config(state='disabled')
 
 
-def insert_abs():
+def remove_char():
     txt_output.config(state='normal')
-    output = txt_output.get('1.0', tk.END)
-    txt_output.insert(f'{lines}.{len(txt_output.get(str(lines) + ".0", tk.END))}', f'\n{abs(int(output))}')
-    txt_output.config(state='disabled')
-
-
-def insert_limit():
-    txt_output.config(state='normal')
-    expr = process_txt()[0]
-    value = ent_limit_value.get()
-    value = value.replace('∞', str(sympy.S.Infinity))
-    limit = sympy.Limit(sympy.sympify(expr), sympy.Symbol('x'), sympy.sympify(value)).doit()
-    txt_output.insert(f'{lines}.{len(txt_output.get(str(lines) + ".0", tk.END))}', f'\n{limit}')
-    txt_output.config(state='disabled')
-
-
-def insert_derivative():
-    txt_output.config(state='normal')
-    expr = process_txt()[0]
-    d = sympy.Derivative(sympy.sympify(expr), sympy.Symbol('x')).doit()
-    txt_output.insert(f'{lines}.{len(txt_output.get(str(lines) + ".0", tk.END))}', f'\n{d}')
-    txt_output.config(state='disabled')
-
-
-def insert_integral():
-    txt_output.config(state='normal')
-    expr = process_txt()[0]
-    i = sympy.Integral(sympy.sympify(expr), sympy.Symbol('x')).doit()
-    txt_output.insert(f'{lines}.{len(txt_output.get(str(lines) + ".0", tk.END))}', f'\n{i}')
-    txt_output.config(state='disabled')
-
-
-def insert_summation():
-    txt_output.config(state='normal')
-    expr = process_txt()[0]
-    x = sympy.Symbol('x')
-    summation = sympy.summation(sympy.sympify(expr), (x, sympy.sympify(ent_summation_start.get()), sympy.sympify(ent_summation_n.get())))
-    txt_output.insert(f'{lines}.{len(txt_output.get(str(lines) + ".0", tk.END))}', f'\n{summation}')
-    txt_output.config(state='disabled')   
-
-
-def insert_letter(letter):
-    txt_output.config(state='normal')
-    txt_output.insert(f'{lines}.{len(txt_output.get(str(lines) + ".0", tk.END))}', letter)
+    txt_output.delete('end-2c', tk.END)
     txt_output.config(state='disabled')
 
 
@@ -306,4 +251,3 @@ def show_functions():
         frm_sci.pack_forget()
         frm_symbols.pack_forget()
     is_showed_functions = not is_showed_functions
-

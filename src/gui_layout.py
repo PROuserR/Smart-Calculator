@@ -2,7 +2,6 @@ from functions import *
 
 
 def place_basic_panel():
-    lbl_expression.grid(row=0, column=0, sticky='new')
     txt_output.grid(row=1, column=0, sticky='new')
 
     btn_submit.grid(row=0, column=0)
@@ -70,7 +69,7 @@ def place_func_btns():
     ent_base.grid(row=0, column=2)
     btn_e.grid(row=0, column=3)
 
-    btn_abs.grid(row=1, column=1)
+    btn_absolute.grid(row=1, column=1)
     btn_imag.grid(row=1, column=2)
     btn_factorial.grid(row=1, column=3)
     ent_summation_n.grid(row=0, column=0)
@@ -148,30 +147,30 @@ def assign_gui_funcs():
 
     btn_e.configure(command=lambda: insert_letter(btn_e['text']))
     btn_factorial.configure(command=lambda: insert_letter(btn_factorial['text']))
-    btn_abs.configure(command=insert_abs)
+    btn_absolute.configure(command=lambda: compute('absolute'))
     btn_imag.configure(command=lambda: insert_letter(btn_imag['text']))
-    btn_derivative.configure(command=insert_derivative)
-    btn_integral.configure(command=insert_integral)
+    btn_derivative.configure(command=lambda: compute('derivative'))
+    btn_integral.configure(command=lambda: compute('integral'))
 
     btn_greater.configure(command=lambda: insert_letter(btn_greater['text']))
     btn_greater_equal.configure(command=lambda: insert_letter(btn_greater_equal['text']))
     btn_less.configure(command=lambda: insert_letter(btn_less['text']))
     btn_less_equal.configure(command=lambda: insert_letter(btn_less_equal['text']))
 
-    btn_remove.configure(command=remove)
+    btn_remove.configure(command=remove_char)
     btn_clear_txt.configure(command=clear_txt)
     btn_new_line.configure(command=insert_new_line)
     btn_functions.configure(command=show_functions)
     btn_symbols.configure(command=show_symbols)
 
     btn_submit.configure(command=submit)
-    btn_expand.configure(command=expand)
-    btn_factor.configure(command=factor)
+    btn_expand.configure(command=lambda: compute('expand_expression'))
+    btn_factor.configure(command=lambda: compute('factor_expression'))
 
-    btn_limit.configure(command=insert_limit)
+    btn_limit.configure(command=lambda: compute('limit'))
     btn_insert_infinity.configure(command=lambda: ent_limit_value.insert(tk.END, '∞'))
 
-    btn_summation.configure(command=insert_summation)
+    btn_summation.configure(command=lambda: compute('summation'))
 
     btn_letter_a.configure(command=lambda: insert_letter(btn_letter_a['text']))
     btn_letter_b.configure(command=lambda: insert_letter(btn_letter_b['text']))
