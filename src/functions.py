@@ -16,10 +16,10 @@ def submit():
     elif '<' in exprs or '>' in exprs or '≥' in exprs or '≤' in exprs:
         compute('solve_inequality')
     else:
-        if sympy.sympify(process_input()[0]).is_Number or '°' in exprs:
-            compute('calculate_expression')
-        else:
+        if has_symbol(exprs):
             plot_expression()
+        else:
+            compute('calculate_expression')
     txt_output.config(state='disabled')
 
 
@@ -87,15 +87,21 @@ def extract_numbers(expr):
 
 
 def has_symbol(expr):
-    right_parentheses = expr.index('(')
-    left_parentheses = expr.index(')')
+    try:
+        right_parentheses = expr.index('(')
+        left_parentheses = expr.index(')')
 
 
-    if 'pi' not in expr:
-        for char in expr[right_parentheses + 1:left_parentheses]:
-            if char.isalpha():
+        if 'pi' not in expr:
+            for char in expr[right_parentheses + 1:left_parentheses]:
+                if char.isalpha():
+                    return True
+        return False
+    except:
+        for char in expr:
+            if char in 'abcdefghijklmnopqrstuvwxyz':
                 return True
-    return False
+        return False
 
 
 def add_star(expr):
@@ -103,7 +109,8 @@ def add_star(expr):
         if expr[i].isdigit() and expr[i + 1].isalpha()  and expr[i+1] != '°' or expr[i] == ')' and expr[i+1] == '(' and expr[i+1] != '°':
             expr = expr[:i+1] + '*' + expr[i+1:]
         if expr[i].isalpha() and expr[i + 1].isalpha()  and expr[i+1] != '°' or expr[i] == ')' and expr[i+1] == '(' and expr[i+1] != '°':
-            expr = expr[:i+1] + '*' + expr[i+1:]
+            if str(sympy.pi) not in expr:
+                expr = expr[:i+1] + '*' + expr[i+1:]
     return expr
 
 
