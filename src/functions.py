@@ -8,7 +8,6 @@ is_showed_functions = True
 
 
 def submit():
-    txt_output.configure(state='normal')
     exprs = txt_output.get('1.0', tk.END)
 
     if '=' in exprs:
@@ -20,12 +19,9 @@ def submit():
             plot_expression()
         else:
             compute('calculate_expression')
-    txt_output.config(state='disabled')
 
 
 def plot_expression():
-    txt_output.config(state='normal')
-        
     exprs = process_input()
 
     if lines == 1:
@@ -34,7 +30,6 @@ def plot_expression():
         sympy.plot(sympy.sympify(exprs[0]), sympy.sympify(exprs[1]),title='2 Lines' , xlabel='x', ylabel='f(x)')
     if lines == 3:
         sympy.plot(sympy.sympify(exprs[0]), sympy.sympify(exprs[1]), sympy.sympify(exprs[2]),title='Lines' , xlabel='x', ylabel='f(x)')
-    txt_output.config(state='disabled')
 
 
 # This function will find the index of the last digit after char ex: √
@@ -205,9 +200,9 @@ def compute(operation):
     txt_output.config(state='disabled')
  
 
-def insert_letter(UIElem):
+def insert_btn_txt(btn):
     txt_output.config(state='normal')
-    txt_output.insert(f'{lines}.{len(txt_output.get(str(lines) + ".0", tk.END))}', UIElem['text'])
+    txt_output.insert(tk.END, btn['text'])
     txt_output.config(state='disabled')
 
 
