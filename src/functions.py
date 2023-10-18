@@ -205,9 +205,9 @@ def compute(operation):
     txt_output.config(state='disabled')
  
 
-def insert_letter(letter):
+def insert_letter(UIElem):
     txt_output.config(state='normal')
-    txt_output.insert(f'{lines}.{len(txt_output.get(str(lines) + ".0", tk.END))}', letter)
+    txt_output.insert(f'{lines}.{len(txt_output.get(str(lines) + ".0", tk.END))}', UIElem['text'])
     txt_output.config(state='disabled')
 
 
