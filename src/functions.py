@@ -2,13 +2,8 @@ import sympy
 from widgets import *
 
 
-lines = 1
-is_showed_symbols = True
-is_showed_functions = True
-
-
 def submit():
-    exprs = txt_output.get('1.0', tk.END)
+    exprs = txt_box.get('1.0', tk.END)
 
     if '=' in exprs:
         compute('solve_equality')
@@ -24,12 +19,12 @@ def submit():
 def plot_expression():
     exprs = process_input()
 
-    if lines == 1:
-        sympy.plot(sympy.sympify(exprs[0]), title=str(exprs[0]), xlabel='x', ylabel='f(x)')
-    if lines == 2:
-        sympy.plot(sympy.sympify(exprs[0]), sympy.sympify(exprs[1]),title='2 Lines' , xlabel='x', ylabel='f(x)')
-    if lines == 3:
-        sympy.plot(sympy.sympify(exprs[0]), sympy.sympify(exprs[1]), sympy.sympify(exprs[2]),title='Lines' , xlabel='x', ylabel='f(x)')
+    if txt_box.index(tk.INSERT)[0] == '1':
+        sympy.plot(sympy.sympify(exprs[0]), xlabel='x', ylabel='f(x)')
+    if txt_box.index(tk.INSERT)[0] == '2':
+        sympy.plot(sympy.sympify(exprs[0]), sympy.sympify(exprs[1]), xlabel='x', ylabel='f(x)')
+    if txt_box.index(tk.INSERT)[0] == '3':
+        sympy.plot(sympy.sympify(exprs[0]), sympy.sympify(exprs[1]), sympy.sympify(exprs[2]), xlabel='x', ylabel='f(x)')
 
 
 # This function will find the index of the last digit after char ex: √
@@ -111,8 +106,9 @@ def add_star(expr):
 
 def process_input():
     exprs = []
-    for i in range(1, lines + 1):
-        expr = txt_output.get(f'{i}.0', f'{i+1}.0')
+
+    for i in range(1, int(txt_box.index(tk.INSERT)[0]) + 1):
+        expr = txt_box.get(f'{i}.0', f'{i+1}.0')
         expr = expr.replace('Ⲡ', str(sympy.pi))
         expr = expr.replace('e', str(sympy.E))
         expr = expr.replace('²', '** 2 ')
@@ -156,7 +152,7 @@ def process_input():
 
 
 def compute(operation):
-    txt_output.config(state='normal')
+    txt_box.config(state='normal')
     expr = process_input()[0]
 
     if operation == 'calculate_expression':
@@ -196,60 +192,51 @@ def compute(operation):
         summation = sympy.summation(sympy.sympify(expr), (x, sympy.sympify(ent_summation_start.get()), sympy.sympify(ent_summation_n.get())))
         result = summation
 
-    txt_output.insert(tk.END, f'\n{result}')
-    txt_output.config(state='disabled')
+    txt_box.insert(tk.END, f'\n{result}')
+    txt_box.config(state='disabled')
  
 
 def insert_btn_txt(btn):
-    txt_output.config(state='normal')
-    txt_output.insert(tk.END, btn['text'])
-    txt_output.config(state='disabled')
+    txt_box.config(state='normal')
+    txt_box.insert(tk.END, btn['text'])
+    txt_box.config(state='disabled')
 
 
 def insert_new_line():
-    txt_output.config(state='normal')
-    global lines
-    lines += 1
-    txt_output.insert(tk.END, '\n')
-    txt_output.config(state='disabled')
+    txt_box.config(state='normal')
+    txt_box.insert(tk.END, '\n')
+    txt_box.config(state='disabled')
 
 
 def remove_char():
-    txt_output.config(state='normal')
-    txt_output.delete('end-2c', tk.END)
-    txt_output.config(state='disabled')
+    txt_box.config(state='normal')
+    txt_box.delete('end-2c', tk.END)
+    txt_box.config(state='disabled')
 
 
 def clear_txt():
-    txt_output.config(state='normal')
-    txt_output.delete('1.0', tk.END)
-    txt_output.config(state='disabled')
+    txt_box.config(state='normal')
+    txt_box.delete('1.0', tk.END)
+    txt_box.config(state='disabled')
 
 
 def show_symbols():
-    global is_showed_symbols
-    if is_showed_symbols:
-        frm_symbols.pack()
-        frm_standard.pack_forget()
-        frm_sci.pack_forget()
-
-    else:
+    if frm_symbols.winfo_ismapped():
         frm_standard.pack()
         frm_symbols.pack_forget()
         frm_sci.pack_forget()
-        
-    is_showed_symbols = not is_showed_symbols
+    else:
+        frm_symbols.pack()
+        frm_standard.pack_forget()
+        frm_sci.pack_forget() 
 
 
 def show_functions():
-    global is_showed_functions
-    if is_showed_functions:
-        frm_standard.pack_forget()
-        frm_symbols.pack_forget()
-        frm_sci.pack()
-
-    else:
+    if frm_sci.winfo_ismapped():
         frm_standard.pack()
         frm_sci.pack_forget()
         frm_symbols.pack_forget()
-    is_showed_functions = not is_showed_functions
+    else:
+        frm_standard.pack_forget()
+        frm_symbols.pack_forget()
+        frm_sci.pack()

@@ -1,7 +1,6 @@
 #   Defining widgets to use them in other modules
 import tkinter as tk
 
-
 #   Main window
 win = tk.Tk()
 win.title('Smart Calculator')
@@ -10,7 +9,7 @@ win.title('Smart Calculator')
 #   Navigation gui elements
 frm_output = tk.Frame()
 
-txt_output = tk.Text(master=frm_output, width=32, height=6, state='disabled', font=('Script', 20))
+txt_box = tk.Text(master=frm_output, width=32, height=6, state='disabled', font=('Script', 20))
 
 
 frm_nav_buttons = tk.Frame()

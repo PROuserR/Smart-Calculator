@@ -2,7 +2,7 @@ from functions import *
 
 
 def place_basic_panel():
-    txt_output.grid(row=1, column=0, sticky='new')
+    txt_box.grid(row=1, column=0, sticky='new')
 
     i = 0
     for btn in frm_nav_buttons.children:
@@ -135,13 +135,13 @@ def assign_gui_funcs():
     btn_less.configure(command=lambda: insert_btn_txt(btn_less))
     btn_less_equal.configure(command=lambda: insert_btn_txt(btn_less_equal))
 
-    btn_remove.configure(command=remove_char)
-    btn_clear_txt.configure(command=clear_txt)
-    btn_new_line.configure(command=insert_new_line)
-    btn_functions.configure(command=show_functions)
-    btn_symbols.configure(command=show_symbols)
+    btn_remove.configure(command=lambda: remove_char())
+    btn_clear_txt.configure(command=lambda: clear_txt())
+    btn_new_line.configure(command=lambda: insert_new_line())
+    btn_functions.configure(command=lambda: show_functions())
+    btn_symbols.configure(command=lambda: show_symbols())
 
-    btn_submit.configure(command=submit)
+    btn_submit.configure(command=lambda: submit())
     btn_expand.configure(command=lambda: compute('expand_expression'))
     btn_factor.configure(command=lambda: compute('factor_expression'))
 
