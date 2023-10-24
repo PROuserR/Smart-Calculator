@@ -45,7 +45,7 @@ def place_func_btns():
 
     i = 0
     for btn in frm_expand_factor.children:
-        frm_expand_factor.children[btn].grid(row=0, column=i)
+        frm_expand_factor.children[btn].grid(row=0, column=i, padx=4)
         i += 1
 
     i = 0
@@ -138,8 +138,9 @@ def assign_gui_funcs():
     btn_remove.configure(command=lambda: remove_char())
     btn_clear_txt.configure(command=lambda: clear_txt())
     btn_new_line.configure(command=lambda: insert_new_line())
-    btn_functions.configure(command=lambda: show_functions())
-    btn_symbols.configure(command=lambda: show_symbols())
+    btn_functions.configure(command=lambda: show_hide_functions())
+    btn_symbols.configure(command=lambda: show_hide_symbols())
+    btn_open_image.config(command=lambda: read_from_image(open_file()))
 
     btn_submit.configure(command=lambda: submit())
     btn_expand.configure(command=lambda: compute('expand_expression'))
