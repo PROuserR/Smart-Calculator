@@ -1,9 +1,9 @@
 # Smart-Calculator 🧮
 Advanced Calculator using Python and Sympy library which solves your daily math problems.
 
-<img src="Screenshots/Capture1.PNG">
-<img src="Screenshots/Capture2.PNG">
-<img src="Screenshots/Capture3.PNG">
+<img src="images/screenshots/Capture.PNG">
+<img src="images/screenshots/Capture 2.PNG">
+<img src="images/screenshots/Capture 3.PNG">
 
 # Features 🎇
 1. Calculates any given expression
