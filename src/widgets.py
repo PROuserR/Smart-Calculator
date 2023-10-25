@@ -1,6 +1,7 @@
 #   Defining widgets to use them in other modules
 import tkinter as tk
 
+
 #   Main window
 win = tk.Tk()
 win.title('Smart Calculator')
