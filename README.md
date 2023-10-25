@@ -1,5 +1,5 @@
 # Smart-Calculator 🧮
-Advanced Calculator using Python and Sympy library which solves your daily math problems.
+Smart Calculator made in Python which solves your daily math problems.
 
 <img src="images/screenshots/Capture.PNG">
 <img src="images/screenshots/Capture 2.PNG">
