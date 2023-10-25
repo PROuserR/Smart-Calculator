@@ -169,9 +169,11 @@ def compute(operation):
         exprs = process_input()
         solutions = None
         if len(exprs) == 1:
-            solutions = sympy.solve(sympy.sympify(exprs[0]), dict=True)
+            solutions = sympy.solve(sympy.sympify(exprs[0]))
+            if len(solutions) == 1:
+                solutions = solutions[0]
         elif len(exprs) == 2:
-            solutions = sympy.solve((sympy.sympify(exprs[0]), sympy.sympify(exprs[1])), dict=True)
+            solutions = sympy.solve((sympy.sympify(exprs[0]), sympy.sympify(exprs[1])))
         
         result = solutions
     elif operation == 'solve_inequality':
@@ -202,7 +204,7 @@ def compute(operation):
 
     txt_box.insert(tk.END, f'\n{result}')
     txt_box.config(state='disabled')
- 
+
 
 #   Removes a char from text box
 def remove_char():

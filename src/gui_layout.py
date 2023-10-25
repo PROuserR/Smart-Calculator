@@ -1,7 +1,8 @@
 from functions import *
 
 
-def place_basic_panel():
+#   Layout the main navigation panel (submit clear abc ...)
+def place_nav_panel():
     txt_box.grid(row=1, column=0, sticky='new')
 
     i = 0
@@ -10,6 +11,7 @@ def place_basic_panel():
         i += 1
 
 
+#   Layout the standard default panel
 def place_std_btns():
     i,j = 0,0
     for btn in frm_standard.children:
@@ -20,6 +22,7 @@ def place_std_btns():
             j += 1
 
 
+#   Layout the symbols panel 
 def place_symbols_btns():
     i, j = 0, 0
     for btn in frm_symbols.children:
@@ -30,6 +33,7 @@ def place_symbols_btns():
             i = 0
 
 
+#   Layout the functions panel (sin cos tan ...)
 def place_func_btns():
     ent_summation_n.grid(row=0, column=0)
     btn_summation.grid(row=1, column=0)
@@ -64,8 +68,9 @@ def place_func_btns():
         i += 1
 
 
+#   Calls the layout functions and layout the gui elements
 def init_gui_layout():
-    place_basic_panel()
+    place_nav_panel()
     place_std_btns()
     place_func_btns()
     place_symbols_btns()
@@ -87,7 +92,8 @@ def init_gui_layout():
     frm_expand_factor.pack()
 
 
-def assign_gui_funcs():
+#   Make every button functional by assigning a function to it
+def assign_btn_funcs():
     btn_zero.configure(command=lambda: insert_btn_txt(btn_zero))
     btn_one.configure(command=lambda: insert_btn_txt(btn_one))
     btn_two.configure(command=lambda: insert_btn_txt(btn_two))
@@ -150,7 +156,6 @@ def assign_gui_funcs():
     btn_insert_infinity.configure(command=lambda: ent_limit_value.insert(tk.END, '∞'))
 
     btn_summation.configure(command=lambda: compute('summation'))
-
 
     btn_letter_a.configure(command=lambda: insert_btn_txt(btn_letter_a))
     btn_letter_b.configure(command=lambda: insert_btn_txt(btn_letter_b))
