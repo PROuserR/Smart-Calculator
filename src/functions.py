@@ -159,7 +159,6 @@ def process_input():
             pass
 
         exprs.append(expr)
-    print(exprs)
     return exprs   
 
 
