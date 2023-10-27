@@ -17,7 +17,7 @@ def place_std_btns():
     for btn in frm_standard.children:
         frm_standard.children[btn].grid(row=j, column=i)
         i += 1
-        if i ==6:
+        if i == 6:
             i = 0
             j += 1
 
@@ -68,14 +68,14 @@ def place_func_btns():
         i += 1
 
 
-#   Calls the layout functions and layout the gui elements
+#   Calls the layout functions above and layout the gui elements
 def init_gui_layout():
     place_nav_panel()
     place_std_btns()
     place_func_btns()
     place_symbols_btns()
 
-    frm_output.pack()
+    frm_txtbox.pack()
     frm_nav_buttons.pack()
     frm_standard.pack()
 

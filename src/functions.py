@@ -1,4 +1,5 @@
 import sympy
+import re
 from widgets import *
 from tkinter import filedialog as fd
 
@@ -121,8 +122,11 @@ def process_input():
         expr = expr.replace('²', '** 2 ')
         expr = expr.replace('³', '** 3 ')
         expr = add_star(expr)
-        if '(' in expr and expr[0] != '(' and 'sin' not in expr and 'cos' not in expr and 'tan' not in expr and 'cot' not in expr and 'log' not in expr:
-            expr = expr.replace('(', '*(')
+        if '(' in expr and expr[0] != '(':
+            parentheses_indexes = [m.start() for m in re.finditer("\(", expr)]
+            for parentheses_index in parentheses_indexes:
+                if not expr[parentheses_index - 1].isalpha():
+                    expr = expr[:parentheses_index] + '*' + expr[parentheses_index:]
         if '√' in expr:
             square_root_index = digit_index(expr, '√') 
             expr = expr.replace('√', '')
@@ -155,6 +159,7 @@ def process_input():
             pass
 
         exprs.append(expr)
+    print(exprs)
     return exprs   
 
 

@@ -7,16 +7,17 @@ win = tk.Tk()
 win.title('Smart Calculator')
 
 
-#   Navigation gui elements
-frm_output = tk.Frame(pady=5, padx=5)
 
-txt_box = tk.Text(master=frm_output, width=32, height=8, state='disabled', font=('default', 16))
+frm_txtbox = tk.Frame()
+
+txt_box = tk.Text(master=frm_txtbox, width=32, height=8, state='disabled', font=('default', 16))
 txt_box.config(state='normal')
 txt_box.insert(tk.INSERT, 'Type here your math problem ...')
 txt_box.config(state='disabled')
 
-frm_nav_buttons = tk.Frame(pady=8, padx=5)
 
+#   Navigation gui elements
+frm_nav_buttons = tk.Frame(pady=8, padx=5)
 
 btn_submit = tk.Button(master=frm_nav_buttons, text='Submit', bg='lightgray', width=5, height=2, cursor='hand2', font=('default', 11))
 btn_remove = tk.Button(master=frm_nav_buttons, text='⌫', bg='lightgray', width=5, height=2, cursor='hand2', font=('default', 11))
