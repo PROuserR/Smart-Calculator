@@ -23,7 +23,7 @@ btn_submit = tk.Button(master=frm_nav_buttons, text='Submit', bg='lightgray', wi
 btn_remove = tk.Button(master=frm_nav_buttons, text='⌫', bg='lightgray', width=5, height=2, cursor='hand2', font=('default', 11))
 btn_clear_txt = tk.Button(master=frm_nav_buttons, text='Clear', bg='lightgray', width=5, height=2, cursor='hand2', font=('default', 11))
 btn_new_line = tk.Button(master=frm_nav_buttons, text='⤶', bg='lightgray', width=5, height=2, cursor='hand2', font=('default', 11))
-btn_functions = tk.Button(master=frm_nav_buttons, text='∑ⅆഽ', bg='lightgray', width=5, height=2, cursor='hand2', font=('default', 11))
+btn_sci_functions = tk.Button(master=frm_nav_buttons, text='∑ⅆഽ', bg='lightgray', width=5, height=2, cursor='hand2', font=('default', 11))
 btn_symbols = tk.Button(master=frm_nav_buttons, text='abc', bg='lightgray', width=5, height=2, cursor='hand2', font=('default', 11))
 btn_open_image = tk.Button(master=frm_nav_buttons, text='🖼', bg='lightgray', width=5, height=2, cursor='hand2', font=('default', 11))
 

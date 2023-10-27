@@ -151,13 +151,6 @@ def process_input():
         elif '≤' in str(expr):
             expr = process_inequality(expr, '≤')
 
-        try:    
-            i_index = expr.index('i')
-            if expr[i_index - 1].isdigit():
-                expr = expr.replace('i', 'j')
-        except:
-            pass
-
         exprs.append(expr)
     return exprs   
 
@@ -261,7 +254,7 @@ def show_hide_symbols():
 
 #   Triggers the functions panel
 #   Ex: If it is visible it will hide it
-def show_hide_functions():
+def show_hide_sci_functions():
     if frm_sci.winfo_ismapped():
         frm_standard.pack()
         frm_sci.pack_forget()

@@ -34,7 +34,7 @@ def place_symbols_btns():
 
 
 #   Layout the functions panel (sin cos tan ...)
-def place_func_btns():
+def place_sci_func_btns():
     ent_summation_n.grid(row=0, column=0)
     btn_summation.grid(row=1, column=0)
     btn_absolute.grid(row=1, column=1)
@@ -72,7 +72,7 @@ def place_func_btns():
 def init_gui_layout():
     place_nav_panel()
     place_std_btns()
-    place_func_btns()
+    place_sci_func_btns()
     place_symbols_btns()
 
     frm_txtbox.pack()
@@ -141,14 +141,14 @@ def assign_btn_funcs():
     btn_less.configure(command=lambda: insert_btn_txt(btn_less))
     btn_less_equal.configure(command=lambda: insert_btn_txt(btn_less_equal))
 
+    btn_submit.configure(command=lambda: submit())
     btn_remove.configure(command=lambda: remove_char())
     btn_clear_txt.configure(command=lambda: clear_txt())
     btn_new_line.configure(command=lambda: insert_new_line())
-    btn_functions.configure(command=lambda: show_hide_functions())
+    btn_sci_functions.configure(command=lambda: show_hide_sci_functions())
     btn_symbols.configure(command=lambda: show_hide_symbols())
     btn_open_image.config(command=lambda: read_from_image(open_file()))
 
-    btn_submit.configure(command=lambda: submit())
     btn_expand.configure(command=lambda: compute('expand_expression'))
     btn_factor.configure(command=lambda: compute('factor_expression'))
 
