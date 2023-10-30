@@ -43,3 +43,6 @@ To launch the website simply run the main.py script in src directory:
 ```sh
 python main.py
 ```
+
+# More Inforamtion 📑
+To understand the code repository or implement the project your self, I encourage you to read my article which is a walkthrough step-by-step tutorail. [Click here](https://www.codeproject.com/Articles/5370605/Lets-Code-that-Wicked-Cool-Calculator)

@@ -158,12 +158,11 @@ def process_input():
 #   Performs a computation given the operation required then returns the result
 def compute(operation):
     txt_box.config(state='normal')
-    expr = process_input()[0]
+    exprs = process_input()
 
     if operation == 'calculate_expression':
         result = f'{round(float(sympy.sympify(expr)), 2)}'
     elif operation == 'solve_equality':
-        exprs = process_input()
         solutions = None
         if len(exprs) == 1:
             solutions = sympy.solve(sympy.sympify(exprs[0]))
@@ -174,29 +173,29 @@ def compute(operation):
         
         result = solutions
     elif operation == 'solve_inequality':
-        symbol = [symbol for symbol in sympy.solve(expr[0], dict=True)[0].items()][0][0]
-        solution = [symbol for symbol in sympy.solve(expr[0], dict=True)[0].items()][0][1]
-        result = f'{symbol}{expr[1]}{solution}'
+        symbol = [symbol for symbol in sympy.solve(exprs[0][0], dict=True)[0].items()][0][0]
+        solution = [symbol for symbol in sympy.solve(exprs[0][0], dict=True)[0].items()][0][1]
+        result = f'{symbol}{exprs[0][1]}{solution}'
     elif operation == 'factor_expression':
-        result = sympy.sympify(expr).factor()
+        result = sympy.sympify(exprs[0]).factor()
     elif operation == 'expand_expression':
-        result = sympy.sympify(expr).expand()
+        result = sympy.sympify(exprs[0]).expand()
     elif operation == 'absolute':
-        result = abs(int(sympy.sympify(expr)))    
+        result = abs(int(sympy.sympify(exprs[0])))    
     elif operation == 'limit':
         value = ent_limit_value.get()
         value = value.replace('∞', str(sympy.S.Infinity))
-        limit = sympy.Limit(sympy.sympify(expr), sympy.Symbol('x'), sympy.sympify(value)).doit()
+        limit = sympy.Limit(sympy.sympify(exprs[0]), sympy.Symbol('x'), sympy.sympify(value)).doit()
         result = limit
     elif operation == 'derivative':
-        derivative = sympy.Derivative(sympy.sympify(expr), sympy.Symbol('x')).doit()
+        derivative = sympy.Derivative(sympy.sympify(exprs[0]), sympy.Symbol('x')).doit()
         result = derivative
     elif operation == 'integral':
-        integral = sympy.Integral(sympy.sympify(expr), sympy.Symbol('x')).doit()
+        integral = sympy.Integral(sympy.sympify(exprs[0]), sympy.Symbol('x')).doit()
         result = integral
     elif operation == 'summation':
         x = sympy.Symbol('x')
-        summation = sympy.summation(sympy.sympify(expr), (x, sympy.sympify(ent_summation_start.get()), sympy.sympify(ent_summation_n.get())))
+        summation = sympy.summation(sympy.sympify(exprs[0]), (x, sympy.sympify(ent_summation_start.get()), sympy.sympify(ent_summation_n.get())))
         result = summation
 
     txt_box.insert(tk.END, f'\n{result}')
