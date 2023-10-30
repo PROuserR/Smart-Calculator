@@ -94,39 +94,6 @@ def init_gui_layout():
 
 #   Make every button functional by assigning a function to it
 def assign_btn_funcs():
-    btn_zero.configure(command=lambda: insert_btn_txt(btn_zero))
-    btn_one.configure(command=lambda: insert_btn_txt(btn_one))
-    btn_two.configure(command=lambda: insert_btn_txt(btn_two))
-    btn_three.configure(command=lambda: insert_btn_txt(btn_three))
-    btn_four.configure(command=lambda: insert_btn_txt(btn_four))
-    btn_five.configure(command=lambda: insert_btn_txt(btn_five))
-    btn_six.configure(command=lambda: insert_btn_txt(btn_six))
-    btn_seven.configure(command=lambda: insert_btn_txt(btn_seven))
-    btn_eight.configure(command=lambda: insert_btn_txt(btn_eight))
-    btn_nine.configure(command=lambda: insert_btn_txt(btn_nine))
-
-    btn_equal.configure(command=lambda: insert_btn_txt(btn_equal))
-    btn_dot.configure(command=lambda: insert_btn_txt(btn_dot))
-    btn_plus.configure(command=lambda: insert_btn_txt(btn_plus))
-    btn_minus.configure(command=lambda: insert_btn_txt(btn_minus))
-    btn_multiply.configure(command=lambda: insert_btn_txt(btn_multiply))
-    btn_divide.configure(command=lambda: insert_btn_txt(btn_divide))
-
-    btn_parentheses_right.configure(command=lambda: insert_btn_txt(btn_parentheses_right))
-    btn_parentheses_left.configure(command=lambda: insert_btn_txt(btn_parentheses_left))
-    btn_square_root.configure(command=lambda: insert_btn_txt(btn_square_root))
-    btn_square.configure(command=lambda: insert_btn_txt(btn_square))
-    btn_cube_root.configure(command=lambda: insert_btn_txt(btn_cube_root))
-    btn_cube.configure(command=lambda: insert_btn_txt(btn_cube))
-    btn_x.configure(command=lambda: insert_btn_txt(btn_x))
-    btn_pi.configure(command=lambda: insert_btn_txt(btn_pi))
-
-    btn_sin.configure(command=lambda: insert_btn_txt(btn_sin))
-    btn_cos.configure(command=lambda: insert_btn_txt(btn_cos))
-    btn_tan.configure(command=lambda: insert_btn_txt(btn_tan))
-    btn_cot.configure(command=lambda: insert_btn_txt(btn_cot))
-    btn_degree.configure(command=lambda: insert_btn_txt(btn_degree))
-
     btn_log.configure(command=lambda: insert_btn_txt(btn_log))
 
     btn_e.configure(command=lambda: insert_btn_txt(btn_e))
@@ -157,29 +124,13 @@ def assign_btn_funcs():
 
     btn_summation.configure(command=lambda: compute('summation'))
 
-    btn_letter_a.configure(command=lambda: insert_btn_txt(btn_letter_a))
-    btn_letter_b.configure(command=lambda: insert_btn_txt(btn_letter_b))
-    btn_letter_c.configure(command=lambda: insert_btn_txt(btn_letter_c))
-    btn_letter_d.configure(command=lambda: insert_btn_txt(btn_letter_d))
-    btn_letter_e.configure(command=lambda: insert_btn_txt(btn_letter_e))
-    btn_letter_f.configure(command=lambda: insert_btn_txt(btn_letter_f))
-    btn_letter_g.configure(command=lambda: insert_btn_txt(btn_letter_g))
-    btn_letter_h.configure(command=lambda: insert_btn_txt(btn_letter_h))
-    btn_letter_i.configure(command=lambda: insert_btn_txt(btn_letter_i))
-    btn_letter_j.configure(command=lambda: insert_btn_txt(btn_letter_j))
-    btn_letter_k.configure(command=lambda: insert_btn_txt(btn_letter_k))
-    btn_letter_l.configure(command=lambda: insert_btn_txt(btn_letter_l))
-    btn_letter_m.configure(command=lambda: insert_btn_txt(btn_letter_m))
-    btn_letter_n.configure(command=lambda: insert_btn_txt(btn_letter_n))
-    btn_letter_o.configure(command=lambda: insert_btn_txt(btn_letter_o))
-    btn_letter_p.configure(command=lambda: insert_btn_txt(btn_letter_p))
-    btn_letter_q.configure(command=lambda: insert_btn_txt(btn_letter_q))
-    btn_letter_r.configure(command=lambda: insert_btn_txt(btn_letter_r))
-    btn_letter_s.configure(command=lambda: insert_btn_txt(btn_letter_s))
-    btn_letter_t.configure(command=lambda: insert_btn_txt(btn_letter_t))
-    btn_letter_u.configure(command=lambda: insert_btn_txt(btn_letter_u))
-    btn_letter_v.configure(command=lambda: insert_btn_txt(btn_letter_v))
-    btn_letter_w.configure(command=lambda: insert_btn_txt(btn_letter_w))
-    btn_letter_x.configure(command=lambda: insert_btn_txt(btn_letter_x))
-    btn_letter_y.configure(command=lambda: insert_btn_txt(btn_letter_y))
-    btn_letter_z.configure(command=lambda: insert_btn_txt(btn_letter_z))
+    for btn in frm_trig.children:
+        frm_trig.children[btn]['command'] = lambda x=frm_trig.children[btn]: insert_btn_txt(x)
+
+
+    for btn in frm_standard.children:
+        frm_standard.children[btn]['command'] = lambda x=frm_standard.children[btn]: insert_btn_txt(x)
+
+    for btn in frm_symbols.children:
+        frm_symbols.children[btn]['command'] = lambda x=frm_symbols.children[btn]: insert_btn_txt(x)
+
