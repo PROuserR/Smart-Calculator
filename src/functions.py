@@ -161,7 +161,7 @@ def compute(operation):
     exprs = process_input()
 
     if operation == 'calculate_expression':
-        result = f'{round(float(sympy.sympify(expr)), 2)}'
+        result = f'{round(float(sympy.sympify(exprs[0])), 2)}'
     elif operation == 'solve_equality':
         solutions = None
         if len(exprs) == 1:
