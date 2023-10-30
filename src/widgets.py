@@ -125,4 +125,6 @@ btn_plus = tk.Button(master=frm_standard, text='+', width=5, height=2, cursor='h
 #   Symbols mode gui elements
 frm_symbols = tk.LabelFrame(text='Symbols', font=('default', 12))
 
-symbol_btns = [tk.Button(master=frm_symbols, text=chr(i), width=5, height=2, cursor='hand2', font=('default', 12)) for i in range(97, 123)]
+#   Generating buttons from a to z using list comprehension and chr()
+symbol_btns = [tk.Button(master=frm_symbols, text=chr(i), width=5, height=2, cursor='hand2', font=('default', 12))
+                for i in range(97, 123)]
